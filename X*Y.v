@@ -10,9 +10,10 @@ initial
 begin
 	A_i=0;
 	carry=0;
-	count=0;
+	count=4;
 	M=A;
 	Q=B;
+	#1;
 	while(count != 0)
 	begin
 		if(Q[0] == 1)
@@ -22,7 +23,7 @@ begin
 		{carry,A_i,Q}={carry,A_i,Q}>>1;
 		count=count-1;
 	end
-	P={A_i,Q};
+	P={carry,A_i,Q};
 end
 
 endmodule
