@@ -1,41 +1,38 @@
-module multiplier(P,A,B);
-output[8:0] P;
+module multiplier(product,A,B);
 input[3:0] A,B;
-reg[8:0] P;
-reg carry;
-reg[3:0] M,Q;
-reg[3:0] A_i;
-integer count;
+output reg[7:0] product;
+
+reg[3:0] M,Q,temp;
+reg c;
+integer i;
 initial
 begin
-	A_i=0;
-	carry=0;
-	count=4;
+	product=0;
+	temp=4'b0;
+	#1;
 	M=A;
 	Q=B;
-	#1;
-	while(count != 0)
+	c=0;
+	
+	for(i=0;i<4;i=i+1)
 	begin
-		if(Q[0] == 1)
+		if(Q[0])
 		begin
-			{carry,A_i}=A_i+M;
+		{c,temp}=temp+M;
 		end
-		{carry,A_i,Q}={carry,A_i,Q}>>1;
-		count=count-1;
+		{c,temp,Q}={c,temp,Q} >> 1;
 	end
-	P={carry,A_i,Q};
+	product={temp,Q};
 end
-
 endmodule
 //test
-module a_m_b;
-reg[3:0] a,b;
-wire[3:0] p;
-multiplier n1(p,a,b);
+module multiplier_s;
+reg[3:0] A,B;
+wire[7:0] product;
+multiplier n1(product,A,B);
 initial
 begin
-	a=8;
-	b=4;
+	A=4; B=2;
 	#10;
 end
 endmodule
