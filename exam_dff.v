@@ -18,7 +18,7 @@ initial
 begin
 	d=1;
 	clk=0; #2; clk=1; #2; clk=0; #2;
-	d=0;
+	d=0;#1;
 	clk=1; #2; clk=0; #2; clk=1; #2;
 end
 endmodule

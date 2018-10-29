@@ -9,18 +9,18 @@ endmodule
 //test
 
 module register_tb;
-reg load,clk;
+reg load,clk,en;
 reg[15:0] d;
 wire[15:0] out;
 
-register n1(out,load,d,clk);
+register n1(out,load,d,clk,en);
 initial
 begin
-	d=20; load=1;
+	d=20; load=1; en=1;
 	clk=1;#2;clk=0;#2;clk=1;#2;
-	d=111; load=0;
+	d=111; load=0; en=0;
 	clk=1;#2; clk=0;#2; clk=1;#2;
-	d=1133; load=1;
+	d=1133; load=1; en=1;
 	clk=1;#2; clk=0;#2; clk=1;#2;
 end
 endmodule

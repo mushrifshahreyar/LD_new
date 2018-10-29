@@ -1,9 +1,9 @@
 module binary_cell(out,load,d,clk);
 input d,load,clk;
 output out;
-wire p;
+wire p,out_bar;
 
-mux_2_1 n1(p,load,out,d);
+mux_2_1 n6(p,load,out,d);
 dff n2(out, ,p,clk);
 
 endmodule
